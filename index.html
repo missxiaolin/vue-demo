@@ -1,12 +1,66 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>ceshi</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>ceshi</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+
+  <style>
+    a{
+      color: blue;
+    }
+  </style>
+  <a class="api a">mnt/a.html</a>
+  <br>
+  <a class="api b">java/b.html</a>
+  <script type="text/javascript">
+    // 注册路由
+    document.querySelectorAll('.api').forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        var link = item.textContent;
+        window.history.pushState({ name: 'api' }, link, link);
+      }, false)
+    })
+
+    // 监听路由
+    window.addEventListener('popstate', (e) => {
+      console.log({
+        location: location.href,
+        state: e.state
+      })
+    }, false)
+  </script>
+  <!-- <h3>Hash</h3>
+
+  <a class="hash a">#a.html</a>
+  <a class="hash b">#b.html</a>
+  <script>
+    // 注册路由
+    document.querySelectorAll('.hash').forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        var link = item.textContent;
+        location.hash = link
+      }, false)
+    })
+
+    // 监听路由
+    window.addEventListener('hashchange', (e) => {
+      console.log({
+        location: location.href,
+        hash: location.hash
+      })
+    }, false)
+  </script> -->
+</body>
+
 </html>
