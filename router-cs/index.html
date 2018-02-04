@@ -11,14 +11,15 @@
   <div id="app"></div>
   <!-- built files will be auto injected -->
 
-  <!-- <style>
-    a{
+  <style>
+    a {
       color: blue;
     }
   </style>
-  <a class="api a">a.html</a>
+  <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+  <a class="api a">http://www.vuece.com/a.html</a>
   <br>
-  <a class="api b">java/b.html</a>
+  <a class="api b">http://www.vuece.com/b.html</a>
   <script type="text/javascript">
     // 注册路由
     document.querySelectorAll('.api').forEach(item => {
@@ -26,9 +27,14 @@
         e.preventDefault();
 
         var link = item.textContent;
-        window.history.pushState({ name: 'api' }, link, link);
+        var history = window.history;
+        history.pushState({ name: 'a' }, link, link);
       }, false)
     })
+
+    window.onpopstate = function() {  
+      console.log(11)
+    }; 
 
     // 监听路由
     window.addEventListener('popstate', (e) => {
@@ -37,7 +43,7 @@
         state: e.state
       })
     }, false)
-  </script> -->
+  </script>
   <!-- <h3>Hash</h3>
 
   <a class="hash a">#a.html</a>
