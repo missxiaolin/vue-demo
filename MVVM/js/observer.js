@@ -2,6 +2,10 @@ var data = {name: 'kindeng'}
 observe(data)
 data.name = 'dmq' // 哈哈哈，监听到值变化了 kindeng --> dmq
 
+/**
+ * 遍历对象
+ * @param {*} data
+ */
 function observe (data) {
   if (!data || typeof data !== 'object') {
     return
@@ -12,6 +16,12 @@ function observe (data) {
   })
 }
 
+/**
+ * 监听对象
+ * @param {*} data
+ * @param {*} key
+ * @param {*} val
+ */
 function defineReactive (data, key, val) {
   observe(val) // 监听子属性
   Object.defineProperty(data, key, {
