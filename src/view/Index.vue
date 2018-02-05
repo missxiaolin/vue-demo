@@ -1,16 +1,19 @@
 <template>
   <div class="hello">
-    sss
+    <heador></heador>
   </div>
 </template>
 
 <script>
+import Heador from '../public/header'
 export default {
-  name: 'HelloWorld',
+  name: 'index',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
     }
+  },
+  components: {
+    Heador
   }
 }
 </script>
