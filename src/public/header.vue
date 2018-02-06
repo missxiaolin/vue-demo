@@ -10,7 +10,7 @@
 <script>
 import btn from '../core/btn'
 export default {
-  name: 'header',
+  name: 'heador',
   data () {
     return {
     }
