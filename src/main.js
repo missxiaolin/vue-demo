@@ -4,7 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
-import 'lib-flexible'
+// 使用viewport 或者使用 lib-flexible
+// import 'lib-flexible'
 
 Vue.config.productionTip = false
 

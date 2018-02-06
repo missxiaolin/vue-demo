@@ -65,6 +65,7 @@
       // 否则可以在第二个参数告诉我你的设计图是多大。
       designWidth = parseInt(hotcss.designWidth, 10)
     }
+    console.log(parseInt(px, 10) * 320 / designWidth / 20)
 
     return parseInt(px, 10) * 320 / designWidth / 20
   }
