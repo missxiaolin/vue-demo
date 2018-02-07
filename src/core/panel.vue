@@ -1,6 +1,6 @@
 <template>
     <section :class="[panelClass,cname]">
-        <h4 v-if="title">-{{ title }}-</h4>
+        <h4>-{{ title }}-</h4>
         <slot></slot>
     </section>
 </template>
@@ -30,7 +30,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-@import "css/element.scss";
+@import "~css/element.scss";
 .panel {
   @include panel;
 }

@@ -2,12 +2,14 @@
   <div class="hello">
     <heador></heador>
     <PublicSlider></PublicSlider>
+    <Novice></Novice>
   </div>
 </template>
 
 <script>
 import Heador from 'public/header'
 import PublicSlider from './Slider/Slider'
+import Novice from './Novice/Novice'
 export default {
   name: 'index',
   data () {
@@ -16,7 +18,8 @@ export default {
   },
   components: {
     Heador,
-    PublicSlider
+    PublicSlider,
+    Novice
   }
 }
 </script>
