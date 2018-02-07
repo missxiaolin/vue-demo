@@ -1,11 +1,13 @@
 <template>
   <div class="hello">
     <heador></heador>
+    <PublicSlider></PublicSlider>
   </div>
 </template>
 
 <script>
 import Heador from 'public/header'
+import PublicSlider from './Slider/Slider'
 export default {
   name: 'index',
   data () {
@@ -13,7 +15,8 @@ export default {
     }
   },
   components: {
-    Heador
+    Heador,
+    PublicSlider
   }
 }
 </script>

@@ -7,8 +7,8 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
-      name: 'HelloWorld',
+      path: '/index',
+      name: 'index',
       component: () => import(/* webpackChunkName: 'index' */'@/view/Index')
     }
   ]
