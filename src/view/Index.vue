@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Heador from '../public/header'
+import Heador from 'public/header'
 export default {
   name: 'index',
   data () {
