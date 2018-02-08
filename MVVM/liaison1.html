@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>双向绑定测试</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="text">
+        {{ text }}
+    </div>
+    <script>
+
+        function compile (node, vm) {
+            var reg = /\{\{(.*)\}\}/
+            // 节点类型元素
+            if (node.nodeType === 1){
+                var attr = node.attributes
+                console.log(attr)
+                // 解析属性
+                for (var i = 0; i < attr.length; i++) {
+                    if(attr[i].nodeName == 'v-model'){
+                        var name = attr[i].nodeValue // 获取v-model 绑定属性
+                        node.value = vm.data[name] // 将data值复制给node
+                        node.removeAttribute('v-model')
+                    }
+                    
+                }
+            }
+            // 节点类型为text
+            if(node.nodeType === 3){
+                if(reg.test(node.nodeValue)) {
+                    var name = RegExp.$1 // 获取匹配到的字符串
+                    name = name.trim()
+                    node.nodeValue = vm.data[name]
+                }
+            }
+        }
+
+        // 初始化dom
+        function nodeToFragment (node,vm) {
+            var flag = document.createDocumentFragment()
+            var child
+            while (child = node.firstChild) {
+                compile(child, vm)
+                flag.append(child) // 将子节点劫持到文档片段中
+            }
+
+            return flag
+        }
+
+        // vue函数
+        function Vue (options) {
+            this.data = options.data
+            var id = options.el
+            var dom = nodeToFragment(document.getElementById(id), this)
+            // 编译完成后，将dom返回到app中
+            document.getElementById(id).appendChild(dom)
+        }
+
+        var vm = new Vue({
+            el: 'app',
+            data: {
+                text: 'hello word'
+            }
+        })
+    </script>
+</body>
+</html>
