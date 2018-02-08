@@ -12,18 +12,40 @@
         {{ text }}
     </div>
     <script>
+        // 监听
+        function Watcher(vm, node, name) {
+            Dep.target = this
+            this.name = name
+            this.node = node
+            this.vm = vm
+            this.update()
+            Dep.target = null
+        }
+
+        Watcher.prototype = {
+            update: function () {
+                this.get()
+                this.node.nodeValue = this.value
+            },
+            get: function () {
+                this.value = this.vm[this.name]
+            }
+        }
 
         function compile (node, vm) {
             var reg = /\{\{(.*)\}\}/
             // 节点类型元素
             if (node.nodeType === 1){
                 var attr = node.attributes
-                console.log(attr)
                 // 解析属性
                 for (var i = 0; i < attr.length; i++) {
                     if(attr[i].nodeName == 'v-model'){
                         var name = attr[i].nodeValue // 获取v-model 绑定属性
-                        node.value = vm.data[name] // 将data值复制给node
+                        node.addEventListener('input', function(e) {
+                            // 给相应的data属性赋值，进而触发该属性的set方法
+                            vm[name] = e.target.value
+                        })
+                        node.value = vm[name] // 将data值复制给node
                         node.removeAttribute('v-model')
                     }
                     
@@ -34,7 +56,8 @@
                 if(reg.test(node.nodeValue)) {
                     var name = RegExp.$1 // 获取匹配到的字符串
                     name = name.trim()
-                    node.nodeValue = vm.data[name]
+                    // node.nodeValue = vm[name] // 将data的值赋值给该node
+                    new Watcher(vm, node, name)
                 }
             }
         }
@@ -51,9 +74,68 @@
             return flag
         }
 
+        // 响应数据
+        function defineReactive (obj, key, val) {
+            var dep = new Dep()
+            Object.defineProperty(obj, key, {
+                get: function () {
+                    // 添加订阅者 watcher 到主题对象 Dep
+                    if(Dep.target) dep.addSub(Dep.target)
+                    return val
+                },
+                set: function (newVal) {
+                    if (newVal === val) {
+                        return
+                    }
+                    val = newVal
+                    console.log(val)
+                    // 作为发布者发出通知
+                    dep.notify()
+                }
+            })
+        }
+
+        // 执行绑定属性
+        function observe (obj, vm) {
+            Object.keys(obj).forEach(function (key) {
+                defineReactive(vm,key,obj[key])
+            })
+        }
+
+        // 一个主题对象
+        function Dep () {
+            this.subs = []
+        }
+
+        Dep.prototype = {
+            addSub: function(sub){
+                this.subs.push(sub)
+            },
+            notify: function () {
+                this.subs.forEach(function(sub){
+                    sub.update()
+                })
+            }
+        }
+
+        // // 一个发布者publisher
+        // var pub = {
+        //     publish: function () {
+        //         dep.notify()
+        //     }
+        // }
+
+        // var dep = new Dep()
+
+        // pub.publish()
+
         // vue函数
         function Vue (options) {
             this.data = options.data
+            var data = this.data
+
+            observe(data, this)
+
             var id = options.el
             var dom = nodeToFragment(document.getElementById(id), this)
             // 编译完成后，将dom返回到app中
