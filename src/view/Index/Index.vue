@@ -8,8 +8,8 @@
 
 <script>
 import Heador from 'public/header'
-import PublicSlider from './Slider/Slider'
-import Novice from './Novice/Novice'
+import PublicSlider from './Slider'
+import Novice from './Novice'
 export default {
   name: 'index',
   data () {

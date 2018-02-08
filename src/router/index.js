@@ -9,7 +9,7 @@ export default new Router({
     {
       path: '/index',
       name: 'index',
-      component: () => import(/* webpackChunkName: 'index' */'@/view/Index')
+      component: () => import(/* webpackChunkName: 'index' */'@/view//Index/Index')
     }
   ]
 })
