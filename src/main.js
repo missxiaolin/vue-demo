@@ -9,6 +9,14 @@ import router from './router'
 
 Vue.config.productionTip = false
 
+// 过滤器
+// eslint-disable-next-line
+import * as filters from './filters' // global filters
+
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
