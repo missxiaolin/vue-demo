@@ -10,6 +10,11 @@ export default new Router({
       path: '/index',
       name: 'index',
       component: () => import(/* webpackChunkName: 'index' */'@/view//Index/Index')
+    },
+    {
+      path: '/map',
+      name: 'mao',
+      component: () => import(/* webpackChunkName: 'index' */'@/view//Map/Map')
     }
   ]
 })
