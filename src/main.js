@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import fastClick from 'fastclick'
+import 'babel-polyfill'
 
 // 移动端点击300毫秒延迟问题
 fastClick.attach(document.body)
