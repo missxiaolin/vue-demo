@@ -3,6 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import fastClick from 'fastclick'
+
+// 移动端点击300毫秒延迟问题
+fastClick.attach(document.body)
 
 // 使用viewport 或者使用 lib-flexible
 // import 'lib-flexible'
