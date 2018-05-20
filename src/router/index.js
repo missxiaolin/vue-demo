@@ -15,6 +15,11 @@ export default new Router({
       path: '/map',
       name: 'mao',
       component: () => import(/* webpackChunkName: 'index' */'@/view//Map/Map')
+    },
+    {
+      path: '/wx',
+      name: 'wx',
+      component: () => import(/* webpackChunkName: 'index' */'@/view//Wx/wx')
     }
   ]
 })
