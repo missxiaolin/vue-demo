@@ -7,7 +7,12 @@ import fastClick from 'fastclick'
 import 'babel-polyfill'
 
 // 移动端点击300毫秒延迟问题
-fastClick.attach(document.body)
+// fastClick.attach(document.body)
+if ('addEventListener' in document) {
+  document.addEventListener('DOMContentLoaded', function () {
+    fastClick.attach(document.body)
+  }, false)
+}
 
 // 使用viewport 或者使用 lib-flexible
 // import 'lib-flexible'

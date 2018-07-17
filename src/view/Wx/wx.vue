@@ -1,6 +1,7 @@
 <template>
     <div id="container">
         wx测试
+        <button @click="fa()">测试延迟</button>
     </div>
 </template>
 
@@ -16,6 +17,9 @@ export default {
 
   },
   methods: {
+    fa () {
+      alert(1)
+    }
   },
   created: function () {
   }
