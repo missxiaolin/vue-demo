@@ -25,10 +25,9 @@ export function loadScript (url, id, callback) {
     }, 10000)
     if (script.readyState) {
       script.onreadystatechange = function () {
-        if (script.readyState == 'loaded' || script.readyState == 'complete') {
+        if (script.readyState === 'loaded' || script.readyState === 'complete') {
           script.onreadystatechange = null
           if (timer) {
-            clearTimeout(timer)
             // eslint-disable-next-line
             callback(true)
           }
@@ -46,6 +45,7 @@ export function loadScript (url, id, callback) {
   }
   script.src = url
   document.body.appendChild(script)
+  // document.body.prepend(script)
 }
 
 /**
@@ -68,7 +68,7 @@ export function generateRandomId () {
   let [_date, _id] = [new Date(), '']
   _id = 'xxxxxxxx'.replace(/[xy]/g, function (c) {
     let r = Math.random() * 16 | 0
-    let v = c == 'x' ? r : (r & 0x3 | 0x8)
+    let v = c === 'x' ? r : (r & 0x3 | 0x8)
     return v.toString(16)
   })
   _id = _date.getFullYear() + '' + (_date.getMonth() > 8 ? (_date.getMonth() + 1) : '0' + (1 + _date.getMonth())) + '' + (_date.getDate() > 9 ? _date.getDate() : '0' + _date.getDate()) + _id

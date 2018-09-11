@@ -20,6 +20,11 @@ export default new Router({
       path: '/wx',
       name: 'wx',
       component: () => import(/* webpackChunkName: 'index' */'@/view//Wx/wx')
+    },
+    {
+      path: '/bd',
+      name: 'bd',
+      component: () => import(/* webpackChunkName: 'index' */'@/view//Bd/bd')
     }
   ]
 })
