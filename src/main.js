@@ -6,6 +6,10 @@ import router from './router'
 import fastClick from 'fastclick'
 import 'babel-polyfill'
 
+import thor from 'thor-x'
+import 'thor-x/dist/index.css'
+Vue.use(thor)
+
 // 移动端点击300毫秒延迟问题
 // fastClick.attach(document.body)
 if ('addEventListener' in document) {

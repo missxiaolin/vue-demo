@@ -30,6 +30,11 @@ export default new Router({
       path: '/bd/index',
       name: 'bdIndex',
       component: () => import(/* webpackChunkName: 'index' */'@/view//Bd/index')
+    },
+    {
+      path: '/char',
+      name: 'char',
+      component: () => import(/* webpackChunkName: 'index' */'@/view//Char/index')
     }
   ]
 })
