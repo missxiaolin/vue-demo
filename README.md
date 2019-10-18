@@ -35,3 +35,5 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 微信小程序开发资源汇总  https://github.com/justjavac/awesome-wechat-weapp
 
 微信小程序热更代码  https://zhuanlan.zhihu.com/p/34191831
+
+vue canvas操作 npm install fabric（或yarn add fabric）
