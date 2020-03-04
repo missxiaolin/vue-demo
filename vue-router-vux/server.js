@@ -26,12 +26,6 @@ app.get('/roleAuth', (req, res) => {
       },
       {
         pid: 4,
-        name: '彩票',
-        id: 5,
-        auth: 'lottery',
-      },
-      {
-        pid: 4,
         name: '商品',
         id: 6,
         auth: 'product',
